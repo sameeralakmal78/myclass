@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>පුද්ගලික ගණිත ප්‍රශ්නෝත්තරය</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div id="login-screen" class="screen">
+            <div class="login-box">
+                <h1>පුරන්න ඇතුල් වන්න</h1>
+                <form id="loginForm">
+                    <div class="input-group">
+                        <label for="username">පරිශීලක නාමය:</label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="password">රහස් පදය:</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <button type="submit">ඇතුල් වන්න</button>
+                </form>
+                <p id="login-message" class="message"></p>
+            </div>
+        </div>
+
+        <div id="quiz-screen" class="screen hidden">
+            <div class="quiz-container">
+                <div class="quiz-header">
+                    <h2>ගණිත ප්‍රශ්නෝත්තරය</h2>
+                    <div class="timers">
+                        <div id="total-timer">මුළු කාලය: 75:00</div>
+                        <div id="question-timer">ප්‍රශ්නය: 03:00</div>
+                    </div>
+                </div>
+                <div class="question-section">
+                    <div id="question-number">ප්‍රශ්නය 1/10</div>
+                    <div id="question-text"></div>
+                    <div id="question-image" class="question-image"></div>
+                    <div id="answer-section" class="answer-section"></div>
+                </div>
+                <div class="quiz-footer">
+                    <button id="next-btn" class="btn-primary">මීළඟ ප්‍රශ්නය</button>
+                    <div id="progress">ප්‍රගතිය: 0%</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="result-screen" class="screen hidden">
+            <div class="result-container">
+                <h2>ප්‍රශ්නෝත්තරය අවසන්!</h2>
+                <div id="score-display">ඔබගේ ලකුණු: <span id="score">0</span>/10</div>
+                <div id="time-taken">ප්‍රශ්නෝත්තරය සඳහා ගතවූ කාලය: <span id="time">00:00</span></div>
+                <button id="restart-btn" class="btn-primary">නැවත ආරම්භ කරන්න</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
