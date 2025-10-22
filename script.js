@@ -1,18 +1,41 @@
+// Admin කෝඩ් එක
+const ADMIN_CODE = "math2024";
+
 let currentStudentName = '';
 
 function startQuiz() {
     const studentName = document.getElementById('studentName').value.trim();
+    const accessCode = document.getElementById('accessCode').value.trim();
+    
     if (!studentName) {
-        alert('කරුණුවකර ඔබගේ නම ඇතුලත් කරන්න');
+        showCodeMessage('කරුණාකර ඔබගේ නම ඇතුලත් කරන්න', 'error');
         return;
     }
     
+    if (!accessCode) {
+        showCodeMessage('කරුණාකර Admin කෝඩ් එක ඇතුලත් කරන්න', 'error');
+        return;
+    }
+    
+    if (accessCode !== ADMIN_CODE) {
+        showCodeMessage('❌ වලංගු නොවන Admin කෝඩ් එකක්!', 'error');
+        return;
+    }
+    
+    // කෝඩ් සාවර්ය නම්
     currentStudentName = studentName;
     document.getElementById('name-screen').classList.add('hidden');
     document.getElementById('quiz-screen').classList.remove('hidden');
     document.getElementById('student-info').textContent = `සිසුවා: ${studentName}`;
+    showCodeMessage('', 'success');
     
     startQuizLogic();
+}
+
+function showCodeMessage(message, type) {
+    const messageElement = document.getElementById('code-message');
+    messageElement.textContent = message;
+    messageElement.style.color = type === 'error' ? '#e53e3e' : '#38a169';
 }
 
 // ප්‍රශ්නෝත්තරයේ මුල් තර්කය
@@ -26,10 +49,6 @@ function startQuizLogic() {
     startTotalTimer();
     startQuestionTimer();
 }
-
-// පරිශීලක නාමය සහ රහස් පදය
-const VALID_USERNAME = "admin";
-const VALID_PASSWORD = "math123";
 
 // ප්‍රශ්න ලැයිස්තුව (රුප සහිතව)
 const questions = [
@@ -324,6 +343,8 @@ function restartQuiz() {
     document.getElementById('name-screen').classList.remove('hidden');
     currentStudentName = '';
     document.getElementById('studentName').value = '';
+    document.getElementById('accessCode').value = '';
+    document.getElementById('code-message').textContent = '';
 }
 
 // පිටුව load වන විට name screen එක පෙන්වන්න
