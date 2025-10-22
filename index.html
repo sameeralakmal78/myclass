@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="container">
-        <!-- Student Name Input Screen -->
+        <!-- Student Name & Code Input Screen -->
         <div id="name-screen" class="screen">
             <div class="login-box">
                 <h1>ගණිත ප්‍රශ්නෝත්තරය</h1>
@@ -16,10 +16,15 @@
                     <label for="studentName">ඔබගේ නම ඇතුලත් කරන්න:</label>
                     <input type="text" id="studentName" placeholder="උදා: කමල්" required>
                 </div>
+                <div class="input-group">
+                    <label for="accessCode">Admin කෝඩ් එක ඇතුලත් කරන්න:</label>
+                    <input type="password" id="accessCode" placeholder="Admin කෝඩ් එක" required>
+                </div>
                 <button onclick="startQuiz()">ප්‍රශ්නෝත්තරය අරඹන්න</button>
                 <div class="admin-link">
                     <a href="admin.html">පරිපාලක ඇතුල් වීම</a>
                 </div>
+                <p id="code-message" class="message"></p>
             </div>
         </div>
 
