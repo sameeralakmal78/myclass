@@ -3,7 +3,7 @@ let currentStudentName = '';
 function startQuiz() {
     const studentName = document.getElementById('studentName').value.trim();
     if (!studentName) {
-        alert('කරුණාකර ඔබගේ නම ඇතුලත් කරන්න');
+        alert('කරුණුවකර ඔබගේ නම ඇතුලත් කරන්න');
         return;
     }
     
@@ -15,51 +15,32 @@ function startQuiz() {
     startQuizLogic();
 }
 
-// ප්‍රශ්නෝත්තරය අවසන් කිරීමේ function එක යාවත්කාලීන කරන්න
-// finishQuiz function එක තුළ මෙම කේතය එකතු කරන්න:
-function saveResults(studentName, score, totalQuestions, timeTaken) {
-    fetch('/api/quiz/submit', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            studentName: studentName,
-            score: score,
-            totalQuestions: totalQuestions,
-            timeTaken: timeTaken
-        })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            console.log('Results saved successfully');
-        }
-    })
-    .catch(error => {
-        console.error('Error saving results:', error);
-    });
+// ප්‍රශ්නෝත්තරයේ මුල් තර්කය
+function startQuizLogic() {
+    currentQuestion = 0;
+    userAnswers = new Array(questions.length).fill(null);
+    score = 0;
+    quizStartTime = Date.now();
+    questionStartTime = Date.now();
+    showQuestion();
+    startTotalTimer();
+    startQuestionTimer();
 }
 
-function restartQuiz() {
-    document.getElementById('result-screen').classList.add('hidden');
-    document.getElementById('name-screen').classList.remove('hidden');
-    currentStudentName = '';
-    document.getElementById('studentName').value = '';
-}// පරිශීලක නාමය සහ රහස් පදය
+// පරිශීලක නාමය සහ රහස් පදය
 const VALID_USERNAME = "admin";
 const VALID_PASSWORD = "math123";
 
 // ප්‍රශ්න ලැයිස්තුව (රුප සහිතව)
 const questions = [
     {
-        question: "15 + 8 = ? අගය  ක්සල්න්නුවෝ ",
+        question: "15 + 8 = ? අගය සොයන්න",
         image: null,
         answers: ["21", "22", "23", "24"],
         correct: 2
     },
     {
-        question: "පහත් රුපයේ x හී අගය සොයන්න",
+        question: "පහත රුපයේ x හී අගය සොයන්න",
         image: "images/triangle.png",
         answers: ["1/4", "5/4", "5/8", "6/4"],
         correct: 1
@@ -126,11 +107,9 @@ let totalTimerInterval;
 let questionTimerInterval;
 
 // DOM අංග
-const loginScreen = document.getElementById('login-screen');
+const nameScreen = document.getElementById('name-screen');
 const quizScreen = document.getElementById('quiz-screen');
 const resultScreen = document.getElementById('result-screen');
-const loginForm = document.getElementById('loginForm');
-const loginMessage = document.getElementById('login-message');
 const questionText = document.getElementById('question-text');
 const questionNumber = document.getElementById('question-number');
 const questionImage = document.getElementById('question-image');
@@ -141,36 +120,7 @@ const questionTimerDisplay = document.getElementById('question-timer');
 const progressDisplay = document.getElementById('progress');
 const scoreDisplay = document.getElementById('score');
 const timeDisplay = document.getElementById('time');
-const restartBtn = document.getElementById('restart-btn');
-
-// ඇතුල් වීමේ පෝරමය
-loginForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
-    
-    if (username === VALID_USERNAME && password === VALID_PASSWORD) {
-        loginScreen.classList.add('hidden');
-        quizScreen.classList.remove('hidden');
-        startQuiz();
-    } else {
-        loginMessage.textContent = '❌ වලංගු නොවන පරිශීලක නාමය හෝ රහස් පදය!';
-        loginMessage.style.color = '#e53e3e';
-    }
-});
-
-// ප්‍රශ්නෝත්තරය ආරම්භ කිරීම
-function startQuiz() {
-    currentQuestion = 0;
-    userAnswers = new Array(questions.length).fill(null);
-    score = 0;
-    quizStartTime = Date.now();
-    questionStartTime = Date.now();
-    showQuestion();
-    startTotalTimer();
-    startQuestionTimer();
-}
+const studentResult = document.getElementById('student-result');
 
 // ප්‍රශ්නය පෙන්වීම
 function showQuestion() {
@@ -220,16 +170,13 @@ function displayQuestionImage(imagePath) {
         img.src = imagePath;
         img.alt = 'ප්‍රශ්න රුපය';
         img.onload = function() {
-            // රුපය සාර්ථකව load වුනා
             console.log('රුපය loaded:', imagePath);
         };
         img.onerror = function() {
-            // රුපය load නොවුනොත් placeholder එක පෙන්වන්න
             showImagePlaceholder();
         };
         questionImage.appendChild(img);
     } else {
-        // රුපය නැත්නම් හිස්ව තබන්න
         questionImage.innerHTML = '';
     }
 }
@@ -243,7 +190,6 @@ function showImagePlaceholder() {
 function selectAnswer(index) {
     userAnswers[currentQuestion] = index;
     
-    // සියලුම පිළිතුරු විකල්ප නැවත සකස් කිරීම
     const answerOptions = document.querySelectorAll('.answer-option');
     answerOptions.forEach((option, i) => {
         if (i === index) {
@@ -283,14 +229,12 @@ function startQuestionTimer() {
         const remaining = questionTime - elapsed;
         
         if (remaining <= 0) {
-            // ප්‍රශ්නයේ කාලය අවසන් - ස්වයංක්‍රීයව ඊළඟ ප්‍රශ්නයට
             autoNextQuestion();
         } else {
             const minutes = Math.floor(remaining / 60);
             const seconds = remaining % 60;
             questionTimerDisplay.textContent = `ප්‍රශ්නය: ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
             
-            // කාලය අඩු වන විට වර්ණය වෙනස් කිරීම
             updateQuestionTimerStyle(remaining);
         }
     }, 1000);
@@ -300,9 +244,9 @@ function startQuestionTimer() {
 function updateQuestionTimerStyle(remaining) {
     questionTimerDisplay.classList.remove('warning', 'critical');
     
-    if (remaining <= 30) { // 30 තත්පර යට
+    if (remaining <= 30) {
         questionTimerDisplay.classList.add('critical');
-    } else if (remaining <= 60) { // 1 විනාඩිය යට
+    } else if (remaining <= 60) {
         questionTimerDisplay.classList.add('warning');
     }
 }
@@ -336,11 +280,9 @@ nextBtn.addEventListener('click', function() {
 
 // ප්‍රශ්නෝත්තරය අවසන් කිරීම
 function finishQuiz() {
-    // ටයිමර් නතර කිරීම
     clearInterval(totalTimerInterval);
     clearInterval(questionTimerInterval);
     
-    // ලකුණු ගණනය කිරීම
     score = 0;
     userAnswers.forEach((answer, index) => {
         if (answer === questions[index].correct) {
@@ -348,33 +290,45 @@ function finishQuiz() {
         }
     });
     
-    // කාලය ගණනය කිරීම
     const timeTaken = Math.floor((Date.now() - quizStartTime) / 1000);
     const minutes = Math.floor(timeTaken / 60);
     const seconds = timeTaken % 60;
     
-    // ප්‍රතිඵල පෙන්වීම
+    studentResult.textContent = `සිසුවා: ${currentStudentName}`;
     scoreDisplay.textContent = score;
     timeDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    
+    saveResults(currentStudentName, score, questions.length, timeDisplay.textContent);
     
     quizScreen.classList.add('hidden');
     resultScreen.classList.remove('hidden');
 }
 
-// නැවත ආරම්භ කිරීම
-restartBtn.addEventListener('click', function() {
-    // ටයිමර් නතර කිරීම
-    clearInterval(totalTimerInterval);
-    clearInterval(questionTimerInterval);
-    
-    resultScreen.classList.add('hidden');
-    quizScreen.classList.remove('hidden');
-    startQuiz();
-});
+// ලකුණු save කිරීම (localStorage භාවිතා කරයි)
+function saveResults(studentName, score, totalQuestions, timeTaken) {
+    const results = JSON.parse(localStorage.getItem('quizResults')) || [];
+    const newResult = {
+        studentName: studentName,
+        score: score,
+        totalQuestions: totalQuestions,
+        timeTaken: timeTaken,
+        date: new Date().toLocaleString('si-LK')
+    };
+    results.push(newResult);
+    localStorage.setItem('quizResults', JSON.stringify(results));
+    console.log('Results saved for:', studentName);
+}
 
-// පිටුව load වන විට input fields focus කිරීම
+function restartQuiz() {
+    document.getElementById('result-screen').classList.add('hidden');
+    document.getElementById('name-screen').classList.remove('hidden');
+    currentStudentName = '';
+    document.getElementById('studentName').value = '';
+}
+
+// පිටුව load වන විට name screen එක පෙන්වන්න
 document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('username').focus();
+    document.getElementById('studentName').focus();
 });
 
 // Browser refresh වලින් ආරක්ෂා වීම
@@ -383,5 +337,4 @@ window.addEventListener('beforeunload', function (e) {
         e.preventDefault();
         e.returnValue = 'ඔබ ප්‍රශ්නෝත්තරයෙන් පිටවෙමින් පවතී. ඔබගේ ප්‍රගතිය අහිමි වනු ඇත!';
     }
-
 });
