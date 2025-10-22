@@ -53,7 +53,7 @@ const VALID_PASSWORD = "math123";
 // ප්‍රශ්න ලැයිස්තුව (රුප සහිතව)
 const questions = [
     {
-        question: "15 + 8 = ? අගය සොයන්න",
+        question: "15 + 8 = ? අගය  ක්සල්න්නුවෝ ",
         image: null,
         answers: ["21", "22", "23", "24"],
         correct: 2
@@ -383,4 +383,5 @@ window.addEventListener('beforeunload', function (e) {
         e.preventDefault();
         e.returnValue = 'ඔබ ප්‍රශ්නෝත්තරයෙන් පිටවෙමින් පවතී. ඔබගේ ප්‍රගතිය අහිමි වනු ඇත!';
     }
+
 });
