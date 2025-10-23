@@ -53,9 +53,9 @@ function startQuizLogic() {
 // ප්‍රශ්න ලැයිස්තුව (රුප සහිතව)
 const questions = [
     {
-        question: "15 + 8 = ? අගය සොයන්න",
-        image: null,
-        answers: ["21", "22", "23", "24"],
+        question: "සුළු කරන්න.",
+        image: "images/1Capture.PNG",
+        answers: ["x/2", "2x/3", "y/3", "xy/3"],
         correct: 2
     },
     {
@@ -359,3 +359,4 @@ window.addEventListener('beforeunload', function (e) {
         e.returnValue = 'ඔබ ප්‍රශ්නෝත්තරයෙන් පිටවෙමින් පවතී. ඔබගේ ප්‍රගතිය අහිමි වනු ඇත!';
     }
 });
+
