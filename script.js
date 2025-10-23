@@ -56,7 +56,7 @@ const questions = [
         question: "සුළු කරන්න.",
         image: "images/1Capture.PNG",
         answers: ["x/2", "2x/3", "y/3", "xy/3"],
-        correct: 2
+        correct: 1
     },
     {
         question: "පහත රුපයේ x හී අගය සොයන්න",
@@ -359,4 +359,5 @@ window.addEventListener('beforeunload', function (e) {
         e.returnValue = 'ඔබ ප්‍රශ්නෝත්තරයෙන් පිටවෙමින් පවතී. ඔබගේ ප්‍රගතිය අහිමි වනු ඇත!';
     }
 });
+
 
