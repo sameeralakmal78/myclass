@@ -1,6 +1,6 @@
 // Admin credentials
-const ADMIN_USERNAME = "admin";
-const ADMIN_PASSWORD = "math123";
+const ADMIN_USERNAME = "sameeramlk";
+const ADMIN_PASSWORD = "19931996;
 
 document.getElementById('adminLoginForm').addEventListener('submit', function(e) {
     e.preventDefault();
@@ -64,3 +64,4 @@ function logout() {
     document.getElementById('adminPassword').value = 'math123';
     document.getElementById('admin-message').textContent = '';
 }
+
