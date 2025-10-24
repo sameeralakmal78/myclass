@@ -1,5 +1,9 @@
 // Admin කෝඩ් එක
-const ADMIN_CODE = "math2024";
+const ADMIN_CODE = "math2025";
+
+// Admin credentials
+const ADMIN_USERNAME = "sameeramlk";
+const ADMIN_PASSWORD = "19931996";
 
 let currentStudentName = '';
 
@@ -53,16 +57,16 @@ function startQuizLogic() {
 // ප්‍රශ්න ලැයිස්තුව (රුප සහිතව)
 const questions = [
     {
-        question: "සුළු කරන්න.",
-        image: "images/1Capture.PNG",
-        answers: ["x/2", "2x/3", "y/3", "xy/3"],
-        correct: 1
+        question: "15 + 8 = ? අගය සොයන්න",
+        image: null,
+        answers: ["21", "22", "23", "24"],
+        correct: 2
     },
     {
-        question: "පහත රුපයේ BAC කෝණය සොයන්න.",
-        image: "images/2Capture.PNG",
-        answers: ["20", "45", "30", "10"],
-        correct: 2
+        question: "පහත රුපයේ x හී අගය සොයන්න",
+        image: "images/triangle.png",
+        answers: ["1/4", "5/4", "5/8", "6/4"],
+        correct: 1
     },
     {
         question: "x හි අගය සොයන්න: 2x + 3 = 7",
@@ -359,6 +363,3 @@ window.addEventListener('beforeunload', function (e) {
         e.returnValue = 'ඔබ ප්‍රශ්නෝත්තරයෙන් පිටවෙමින් පවතී. ඔබගේ ප්‍රගතිය අහිමි වනු ඇත!';
     }
 });
-
-
-
