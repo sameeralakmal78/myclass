@@ -15,16 +15,17 @@
                 <form id="adminLoginForm">
                     <div class="input-group">
                         <label for="adminUsername">පරිශීලක නාමය:</label>
-                        <input type="text" id="adminUsername" value="admin" required>
+                        <input type="text" id="adminUsername" value="sameeramlk" required>
                     </div>
                     <div class="input-group">
                         <label for="adminPassword">රහස් පදය:</label>
-                        <input type="password" id="adminPassword" value="math123" required>
+                        <input type="password" id="adminPassword" value="19931996" required>
                     </div>
                     <button type="submit">ඇතුල් වන්න</button>
                 </form>
                 <div class="admin-info">
-                    <p><strong>Admin කෝඩ් එක:</strong> s36</p>
+                    <p><strong>Admin කෝඩ් එක:</strong> math2024</p>
+                    <p><strong>සිසුන්ට දෙන්න:</strong> මෙම කෝඩ් එක භාවිතා කර ප්‍රශ්නෝත්තරයට ඇතුල් වන්න</p>
                 </div>
                 <div class="back-link">
                     <a href="index.html">ප්‍රශ්නෝත්තරයට ආපසු</a>
@@ -37,15 +38,30 @@
         <div id="admin-dashboard" class="screen hidden">
             <div class="admin-container">
                 <h1>පරිපාලක පුවරුව</h1>
-                <div class="admin-info-box">
-                    <p><strong>Admin කෝඩ් එක:</strong> s36</p>
-                    <p><strong>සිසුන්ට දෙන්න:</strong> මෙම කෝඩ් එක භාවිතා කර ප්‍රශ්නෝත්තරයට ඇතුල් වන්න</p>
+                
+                <!-- Contact Information -->
+                <div class="contact-section">
+                    <div class="contact-info">
+                        <h3>අපගේ තොරතුරු</h3>
+                        <p><strong>දුරකථන අංකය:</strong> <a href="tel:0778482237" class="contact-link">077 848 2237</a></p>
+                        <p><strong>WhatsApp Group:</strong> 
+                            <a href="https://chat.whatsapp.com/FqsVqqwb00b627Xj4adrW2" target="_blank" class="whatsapp-link">
+                                📱 අපගේ WhatsApp Group එකට සම්බන්ධ වන්න
+                            </a>
+                        </p>
+                    </div>
                 </div>
+
+                <div class="admin-info-box">
+                    <p><strong>Admin කෝඩ් එක:</strong> math2024</p>
+                </div>
+                
                 <div class="admin-actions">
                     <button onclick="loadResults()">ලකුණු නැවත පූරණය කරන්න</button>
                     <button onclick="clearAllResults()">සියලු ලකුණු මකන්න</button>
                     <button onclick="logout()">පිටවීම</button>
                 </div>
+                
                 <div class="results-section">
                     <h2>සිසුන්ගේ ලකුණු</h2>
                     <div id="results-table" class="results-table">
@@ -71,4 +87,3 @@
     <script src="admin.js"></script>
 </body>
 </html>
-
