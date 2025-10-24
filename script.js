@@ -57,46 +57,46 @@ function startQuizLogic() {
 // ප්‍රශ්න ලැයිස්තුව (රුප සහිතව)
 const questions = [
     {
-        question: "15 + 8 = ? අගය සොයන්න",
+        question: "x + 10 = 30  , x හි අගය සොයන්න",
         image: null,
-        answers: ["21", "22", "23", "24"],
-        correct: 2
+        answers: ["10", "20", "40", "-20"],
+        correct: 1
     },
     {
         question: "පහත රුපයේ x හී අගය සොයන්න",
         image: "images/triangle.png",
-        answers: ["1/4", "5/4", "5/8", "6/4"],
-        correct: 1
+        answers: ["20", "70", "35", "40"],
+        correct: 0
     },
      {
         question: "x හි අගය සොයන්න: 2x + 3 = 7",
-        image: "images/algebra.png",
+        image: null,
         answers: ["1", "2", "3", "4"],
         correct: 1
     },
     {
-        question: "m හි අගය සොයන්න: 2x + 3 = 7",
-        image: "images/algebra.png",
-        answers: ["1", "2", "3", "4"],
-        correct: 1
+        question: "චාප දිග සොයන්න",
+        image: "images/Capture.PNG",
+        answers: ["22 cm", "44 cm", "11 cm", "5.5 cm"],
+        correct: 2
     },
     {
         question: "සරල කරන්න: (x² + 2x + 1)",
-        image: "images/Capture.PNG",
+        image: null,
         answers: ["(x+1)²", "(x-1)²", "x(x+2)", "x²+1"],
         correct: 0
     },
     {
-        question: "පහත රුපයේ දැක්වෙන ත්‍රිකෝණයේ කෝණය සොයන්න",
-        image: "images/triangle.png",
-        answers: ["45°", "60°", "90°", "120°"],
-        correct: 1
+        question: "පහත රුපයේ දැක්වෙන ත්‍රිකෝණයේ BAC කෝණය සොයන්න",
+        image: "images/Capture11.PNG",
+        answers: ["70°", "60°", "40°", "80°"],
+        correct: 3
     },
     {
-        question: "12 × 7 = ?",
-        image: null,
-        answers: ["82", "84", "86", "88"],
-        correct: 1
+        question: "Y හි අගය සොයන්න",
+        image: "images/Capture112.PNG,
+        answers: ["7", "15", "8", "3"],
+        correct: 0
     },
     {
         question: "පහත රුපයේ දැක්වෙන වටයේ වර්ගඵලය සොයන්න",
@@ -397,4 +397,5 @@ window.addEventListener('beforeunload', function (e) {
         e.returnValue = 'ඔබ ප්‍රශ්නෝත්තරයෙන් පිටවෙමින් පවතී. ඔබගේ ප්‍රගතිය අහිමි වනු ඇත!';
     }
 });
+
 
