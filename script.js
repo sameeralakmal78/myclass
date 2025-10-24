@@ -68,8 +68,14 @@ const questions = [
         answers: ["1/4", "5/4", "5/8", "6/4"],
         correct: 1
     },
-    {
+     {
         question: "x හි අගය සොයන්න: 2x + 3 = 7",
+        image: "images/algebra.png",
+        answers: ["1", "2", "3", "4"],
+        correct: 1
+    },
+    {
+        question: "m හි අගය සොයන්න: 2x + 3 = 7",
         image: "images/algebra.png",
         answers: ["1", "2", "3", "4"],
         correct: 1
@@ -391,3 +397,4 @@ window.addEventListener('beforeunload', function (e) {
         e.returnValue = 'ඔබ ප්‍රශ්නෝත්තරයෙන් පිටවෙමින් පවතී. ඔබගේ ප්‍රගතිය අහිමි වනු ඇත!';
     }
 });
+
