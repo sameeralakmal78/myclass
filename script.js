@@ -1,5 +1,5 @@
 // Admin කෝඩ් එක
-const ADMIN_CODE = "math2025";
+const ADMIN_CODE = "math2024";
 
 // Admin credentials
 const ADMIN_USERNAME = "sameeramlk";
@@ -321,10 +321,38 @@ function finishQuiz() {
     scoreDisplay.textContent = score;
     timeDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
     
+    // Contact information පෙන්වන්න
+    showContactInfo();
+    
     saveResults(currentStudentName, score, questions.length, timeDisplay.textContent);
     
     quizScreen.classList.add('hidden');
     resultScreen.classList.remove('hidden');
+}
+
+// Contact information පෙන්වීම
+function showContactInfo() {
+    const contactHTML = `
+        <div class="contact-info-result">
+            <h3>තවත් ප්‍රශ්නෝත්තර සඳහා</h3>
+            <p><strong>දුරකථන අංකය:</strong> <a href="tel:0778482237" class="contact-link">077 848 2237</a></p>
+            <p><strong>WhatsApp Group:</strong> 
+                <a href="https://chat.whatsapp.com/FqsVqqwb00b627Xj4adrW2" target="_blank" class="whatsapp-link">
+                    📱 අපගේ WhatsApp Group එකට සම්බන්ධ වන්න
+                </a>
+            </p>
+        </div>
+    `;
+    
+    // Contact information result container එකට එකතු කරන්න
+    const resultContainer = document.querySelector('.result-container');
+    const existingContact = resultContainer.querySelector('.contact-info-result');
+    
+    if (existingContact) {
+        existingContact.remove();
+    }
+    
+    resultContainer.insertAdjacentHTML('beforeend', contactHTML);
 }
 
 // ලකුණු save කිරීම (localStorage භාවිතා කරයි)
